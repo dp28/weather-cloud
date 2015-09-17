@@ -1,0 +1,1 @@
+A basic Node.js scraper for weather data.
