@@ -1,0 +1,24 @@
+{
+  "name": "weather-cloud",
+  "version": "0.0.0",
+  "description": "Weather Scraper",
+  "main": "src/server.js",
+  "author": "Daniel Patterson",
+  "license": "MIT",
+  "scripts": {
+    "start": "nodemon -- ./node_modules/babel-cli/bin/babel-node.js src/server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dp28/weather-cloud"
+  },
+  "dependencies": {
+    "express": "4.13.3"
+  },
+  "devDependencies": {
+    "babel": "^6.5.2",
+    "babel-cli": "^6.9.0",
+    "babel-preset-es2015": "^6.9.0",
+    "nodemon": "^1.9.2"
+  }
+}
