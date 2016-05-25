@@ -1,0 +1,12 @@
+{
+  "compilerOptions": {
+    "outDir": "compiled",
+    "module": "commonjs",
+    "target": "es5"
+  },
+  "exclude": [
+    "node_modules",
+    "typings"
+  ],
+  "compileOnSave": "false"
+}
