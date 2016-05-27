@@ -2,5 +2,8 @@
   "globalDependencies": {
     "express": "registry:dt/express#4.0.0+20160317120654",
     "node": "registry:env/node#4.0.0+20160507210304"
+  },
+  "dependencies": {
+    "bluebird": "registry:npm/bluebird#3.3.4+20160515010139"
   }
 }
