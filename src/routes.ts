@@ -11,6 +11,10 @@ router.get("/api/locations", (request, response) => {
   getLocationsLike(term, limit).then(response.send.bind(response));
 });
 
+router.get("/api/sources", (request, response) => {
+  response.send(Sources);
+});
+
 Sources.forEach(source => {
   router.get(`/api/forecasts/:id/${source.id}`, (request, response) => {
     findById(request.params.id)
