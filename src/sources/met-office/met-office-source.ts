@@ -6,4 +6,4 @@ export const MetOffice: Source = {
   name: "Met Office",
   url: "http://www.metoffice.gov.uk/",
   fetchForecast
-}
+};
