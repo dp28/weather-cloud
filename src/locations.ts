@@ -12,6 +12,10 @@ export interface Location {
   name: string;
 }
 
+export function findById(id: string): Promise<Location> {
+  return Promise.resolve(R.find(R.propEq("id", id))(Locations));
+}
+
 const nameLike = R.curry((term: string , { name }: { name: string }) => {
   return new RegExp(term, "i").test(name);
 });

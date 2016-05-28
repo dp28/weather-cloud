@@ -2,6 +2,10 @@ var Promise = require("bluebird");
 var R = require("ramda");
 var stringSimilarity = require("fast-levenshtein");
 var Locations = require("../lib/met-office/sites.json");
+function findById(id) {
+    return Promise.resolve(R.find(R.propEq("id", id))(Locations));
+}
+exports.findById = findById;
 var nameLike = R.curry(function (term, _a) {
     var name = _a.name;
     return new RegExp(term, "i").test(name);
