@@ -33,3 +33,8 @@ function bearingToCompassDirection(bearing) {
     return CompassDirections[directionIndex];
 }
 exports.bearingToCompassDirection = bearingToCompassDirection;
+function compassDirectionToBearing(compassDirection) {
+    var directionIndex = CompassDirections[compassDirection.toUpperCase()] || 0;
+    return directionIndex * degreesPerDirection;
+}
+exports.compassDirectionToBearing = compassDirectionToBearing;

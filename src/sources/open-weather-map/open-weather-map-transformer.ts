@@ -1,6 +1,6 @@
 import { APIResponse, APIForecastPoint } from "./open-weather-map-interface";
 import { ForecastPoint } from "../forecast-point";
-import { meteorologicalAngleToCompassDirection } from "../../utils/directions";
+import { meteorologicalAngleToBearing } from "../../utils/directions";
 
 export function transformResponse(response: APIResponse): ForecastPoint[] {
   return response.list.map(transformPoint);
@@ -13,7 +13,7 @@ function transformPoint(apiPoint: APIForecastPoint): ForecastPoint {
     precipitationProbabilityPercentage: null,
     wind: {
       speedMph: metresPerSecondToMilesPerHour(apiPoint.wind.speed),
-      direction: meteorologicalAngleToCompassDirection(apiPoint.wind.deg)
+      bearing: Math.round(meteorologicalAngleToBearing(apiPoint.wind.deg))
     },
     weatherType: apiPoint.weather[0].description,
     temperatureC: Math.round(apiPoint.main.temp)

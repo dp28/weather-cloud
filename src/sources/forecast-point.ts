@@ -4,7 +4,7 @@ export interface ForecastPoint {
   precipitationProbabilityPercentage: number;
   wind: {
     speedMph: number;
-    direction: string;
+    bearing: number;
   };
   weatherType: string;
   temperatureC: number;

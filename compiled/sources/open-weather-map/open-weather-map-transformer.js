@@ -10,7 +10,7 @@ function transformPoint(apiPoint) {
         precipitationProbabilityPercentage: null,
         wind: {
             speedMph: metresPerSecondToMilesPerHour(apiPoint.wind.speed),
-            direction: directions_1.meteorologicalAngleToCompassDirection(apiPoint.wind.deg)
+            bearing: Math.round(directions_1.meteorologicalAngleToBearing(apiPoint.wind.deg))
         },
         weatherType: apiPoint.weather[0].description,
         temperatureC: Math.round(apiPoint.main.temp)

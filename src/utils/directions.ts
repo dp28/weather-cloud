@@ -21,3 +21,8 @@ export function bearingToCompassDirection(bearing: number): string {
   const directionIndex = Math.floor(bearing / degreesPerDirection) % numDirections;
   return CompassDirections[directionIndex];
 }
+
+export function compassDirectionToBearing(compassDirection: string): number {
+  const directionIndex = CompassDirections[compassDirection.toUpperCase()] || 0;
+  return directionIndex * degreesPerDirection;
+}

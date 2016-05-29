@@ -2,6 +2,7 @@ import * as R from "ramda";
 
 import { APIResponse, APIDayForecast, WeatherTypes } from "./met-office-interface";
 import { ForecastPoint } from "../forecast-point";
+import { compassDirectionToBearing } from "../../utils/directions";
 
 export function transformResponse(response: APIResponse): ForecastPoint[] {
   const days = response.SiteRep.DV.Location.Period.map(convertDay);
@@ -21,7 +22,7 @@ function convertDay(dayResponse: APIDayForecast): ForecastPoint[] {
     precipitationProbabilityPercentage: parseInt(data.Pp),
     wind: {
       speedMph: parseInt(data.S),
-      direction: data.D
+      bearing: compassDirectionToBearing(data.D)
     },
     weatherType: WeatherTypes[data.W],
     temperatureC: parseInt(data.T)
