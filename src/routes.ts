@@ -21,18 +21,21 @@ router.get("/api/sources", (request, response) => {
   response.send(Sources);
 });
 
-router.get("/api/forecasts/:locationId", (request, response) => {
-  Locations.findById(request.params.locationId)
-    .then(fetchFromAllSources)
-    .then(response.send.bind(response));
-});
+router.get("/api/forecasts/:locationId", handleRequest(fetchFromAllSources));
 
 router.get("/api/forecasts/:locationId/sources/:sourceId", (request, response) => {
   const source = indexedSources[request.params.sourceId];
-  Locations.findById(request.params.locationId)
-    .then(source.fetchForecast)
-    .then(response.send.bind(response));
+  handleRequest(source.fetchForecast)(request, response);
 });
+
+function handleRequest(handle) {
+  return (request, response) => {
+    Locations.findById(request.params.locationId)
+    .then(handle)
+    .then(response.send.bind(response))
+    .catch(() => response.status(400).send({ error: "Something went wrong" }));
+  };
+}
 
 export default router;
 
@@ -48,11 +51,13 @@ interface SourceResponse {
 function fetchFromAllSources(location: Locations.Location): Promise<MultiSourceResponse> {
   return Promise
     .all(Sources.map(fetchForSource(location)))
+    .then(R.reject(R.isNil))
     .then(sources => ({ sources }));
 }
 
 const fetchForSource = R.curry((location: Locations.Location, source: Source): Promise<SourceResponse> => {
   return source
     .fetchForecast(location)
-    .then(forecast => ({ source, forecast }));
+    .then(forecast => ({ source, forecast }))
+    .catch(() => null);
   });
