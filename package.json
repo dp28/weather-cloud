@@ -1,0 +1,29 @@
+{
+  "name": "typescript-library-starter",
+  "version": "0.1.0",
+  "description": "Yet another library starter using TypeScript - this time with Mocha & Yarn",
+  "main": "dist/index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dp28/typescript-library-starter.git"
+  },
+  "author": "Daniel Patterson <dan24patt@gmail.com>",
+  "license": "MIT",
+  "dependencies": {},
+  "devDependencies": {
+    "@types/chai": "^3.5.0",
+    "@types/mocha": "^2.2.40",
+    "chai": "^3.5.0",
+    "mocha": "^3.2.0",
+    "ts-node": "^3.0.2",
+    "tslint": "^5.1.0",
+    "typescript": "^2.2.2"
+  },
+  "scripts": {
+    "compile": "tsc src/index.ts --outDir dist",
+    "lint": "tslint -c tslint.json 'src/**/*.ts'",
+    "prepublishOnly": "npm run compile",
+    "test": "mocha --opts mocha.opts",
+    "test:watch": "npm test -- --watch"
+  }
+}

@@ -1,0 +1,5 @@
+node_modules/
+src/**/*.spec.js
+.DS_Store
+npm-debug.log
+webpack.config.js
